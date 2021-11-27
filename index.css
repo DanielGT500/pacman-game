@@ -1,0 +1,113 @@
+html, body {
+    margin: 10;
+    padding: 10;
+}
+
+@font-face {
+    font-family: CrackMan;
+    src: url(res/CrackMan.ttf);
+}
+
+#logo {
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'CrackMan';
+}
+
+img {
+    width: 300px;
+    align-self: center;
+}
+h3 {
+    align-self: center;
+}
+
+#you-win, #game-over {
+    position: absolute;
+    left: 15%;
+}
+
+#you-win {
+    display: none;
+    top: 44%;
+}
+
+#game-over {
+    display: none;
+    top: 45%;
+}
+
+.grid {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    width: 420px;
+    height: 420px;
+    border: solid black;
+    background-color: black;
+}
+
+.grid div {
+    height: 15px;
+    width: 15px;
+}
+.pac-dot, .power-pellet {
+    background-image: url('res/pacmanpellet.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pac-dot {
+    background-size: 5px;
+}
+
+.wall {
+    background-color: blue;
+}
+
+.power-pellet {
+    background-size: 12px;
+}
+
+.pacman-right, .pacman-left, .pacman-up, .pacman-down {
+    background-image: url("res/pacman.gif");
+}
+
+.pacman-down {
+    transform: rotate(90deg)
+}
+
+.pacman-up {
+    transform: rotate(-90deg)
+}
+
+.pacman-left {
+    transform: scaleX(-1);
+}
+
+.blinky {
+    background-image: url('res/blinky.gif');
+}
+
+.pinky {
+    background-image: url('res/pinky.gif');
+}
+
+.inky {
+    background-image: url('res/inky.gif');
+}
+
+.clyde {
+    background-image: url('res/clyde.gif');
+}
+
+.scared-ghost {
+    background-image: url('res/scared.gif')
+}
+
+.pacman-right, .pacman-left, .pacman-up, .pacman-down, .blinky, .pinky, .inky, .clyde, .scared-ghost {    
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
