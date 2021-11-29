@@ -84,20 +84,17 @@ function control(e) {
     }
     switch(e.keyCode) {
         case 40: 
-            console.log('pressed down')
             if (!squares[pacmanCurrentIndex + width].classList.contains('wall') &&
                 !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair'))
                 pacmanCurrentIndex += width
                 squares[pacmanCurrentIndex].classList.add('pacman-down')
         break
         case 38:
-            console.log('pressed up')
             if (!squares[pacmanCurrentIndex - width].classList.contains('wall'))
                 pacmanCurrentIndex -= width
                 squares[pacmanCurrentIndex].classList.add('pacman-up')
         break
         case 37:
-            console.log('pressed left')
             if (!squares[pacmanCurrentIndex -1].classList.contains('wall'))
                 pacmanCurrentIndex -=1
                 squares[pacmanCurrentIndex].classList.add('pacman-left')
@@ -106,7 +103,6 @@ function control(e) {
                 }
         break
         case 39:
-            console.log('pressed right')
             if (!squares[pacmanCurrentIndex +1].classList.contains('wall'))
                 pacmanCurrentIndex +=1
                 squares[pacmanCurrentIndex].classList.add('pacman-right')
@@ -175,11 +171,8 @@ ghosts.forEach(ghost => {
 ghosts.forEach(ghost => moveGhost(ghost))
 
 function moveGhost(ghost) {
-    console.log('moved ghost')
     const directions = [-1, +1, -width, +width]
     let direction = directions[Math.floor(Math.random() * directions.length)]
-    console.log(direction)
-    
     ghost.timerId = setInterval(function() {
         //all our code
         //if the next square does NOT contain a wall and does not contain a ghost
@@ -225,19 +218,17 @@ function checkForGameOver() {
     if (squares[pacmanCurrentIndex].classList.contains('ghost') &&
         !squares[pacmanCurrentIndex].classList.contains('scared-ghost')
     ) {
+    // then stop ghosts, turn off controls and display "game over"
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
         document.removeEventListener('keydown', control)
         document.getElementById('game-over').style.display = 'block'
+        document.getElementById('restart').style.display = 'block'
     }
-    // for each ghost we need to stop it moving
-
-    //remove eventlistener from our function
-
-    // tell user the game is over
 }
 
 //check for win
 function checkForWin() {
+    // check if there are no pac-dots or power pellets left, if true, then replenish them
     if (grid.querySelectorAll('.pac-dot').length === 0 && document.querySelectorAll('.power-pellet').length === 0) {
         for (let i = 0; i < layout.length; i++) {
             if (layout[i] === 0) {
@@ -246,6 +237,7 @@ function checkForWin() {
                 squares[i].classList.add('power-pellet')
             }
         }
+    // Once a score of 10,000 is reached, the game is won and can be restarted.
     } else if (score >= 10000) {
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
         document.removeEventListener('keydown', control)
