@@ -1,5 +1,5 @@
 # pacman-game
-A game I've been on as a project as part of my learning with <a href="www.scrimba.com">Scrimba</a> to become a web developer.
+A game I've been working on as a project as part of my learning with <a href="www.scrimba.com">Scrimba</a> to become a web developer.
 
 The game is controllable with the arrow keys on the keyboard. 
 My customisations of the base game include: 
