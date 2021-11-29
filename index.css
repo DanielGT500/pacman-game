@@ -5,7 +5,7 @@ html, body {
 
 @font-face {
     font-family: CrackMan;
-    src: url(..pacman-game/res/restart.png);
+    src: url('..pacman-game/res/restart.png') format('truetype');
 }
 
 #logo {
