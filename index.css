@@ -38,6 +38,20 @@ h3 {
     top: 45%;
 }
 
+#restart {
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    width: 72px;
+    height: 10px;
+    top: 55%;
+    left: 42%;
+    background-image: url('res/restart.png');
+    background-repeat: no-repeat;
+}
+
 .grid {
     display: flex;
     position: relative;

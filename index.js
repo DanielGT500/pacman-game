@@ -119,7 +119,7 @@ function control(e) {
     powerPelletEaten()
     checkForGameOver()
 }
-document.addEventListener('keyup', control)
+document.addEventListener('keydown', control)
 
 function pacDotEaten() {
     if (squares[pacmanCurrentIndex].classList.contains('pac-dot')) {
@@ -215,7 +215,7 @@ function moveGhost(ghost) {
             squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
         }
         checkForGameOver()
-        //checkForWin()
+        checkForWin()
     }, ghost.speed )
     
 }
@@ -226,7 +226,7 @@ function checkForGameOver() {
         !squares[pacmanCurrentIndex].classList.contains('scared-ghost')
     ) {
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
-        document.removeEventListener('keyup', control)
+        document.removeEventListener('keydown', control)
         document.getElementById('game-over').style.display = 'block'
     }
     // for each ghost we need to stop it moving
@@ -238,11 +238,18 @@ function checkForGameOver() {
 
 //check for win
 function checkForWin() {
-    if (!document.getElementById('grid').classList.contains('pac-dot') &&
-     !document.getElementById('grid').classList.contains('power-pellet'))
-     {
-        document.getElementById('you-win').style.display = 'block'
+    if (grid.querySelectorAll('.pac-dot').length === 0 && document.querySelectorAll('.power-pellet').length === 0) {
+        for (let i = 0; i < layout.length; i++) {
+            if (layout[i] === 0) {
+                squares[i].classList.add('pac-dot')
+            } else if (layout[i] === 3) {
+                squares[i].classList.add('power-pellet')
+            }
+        }
+    } else if (score >= 10000) {
         ghosts.forEach(ghost => clearInterval(ghost.timerId))
-        document.removeEventListener('keyup', control)
+        document.removeEventListener('keydown', control)
+        document.getElementById('you-win').style.display = 'block'
+        document.getElementById('restart').style.display = 'block'
     }
 }
